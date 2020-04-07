@@ -6,4 +6,4 @@
 
 ## Major UI Design is here
 
-[UI Design](./ui-design/ui.png)
+[UI Design](./ui-design/README.md)
