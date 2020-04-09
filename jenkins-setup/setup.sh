@@ -17,4 +17,4 @@ docker container run --name fsd-jenkins --rm --detach \
  --volume jenkins-data:/var/jenkins_home \
  --volume jenkins-docker-certs:/certs/client:ro \
  --volume "$HOME":/home \
- --publish 8080:8080 blueocean/jenkins
+ --publish 8080:8080 jenkins/jenkins:lts
