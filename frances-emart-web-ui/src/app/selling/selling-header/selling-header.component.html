@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Emart</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+
+            <a (click)="active(menu.key)" *ngFor="let menu of menus | keyvalue"
+                [ngClass]="{'active': menu.value.isActive}" class="nav-item nav-link "
+                [routerLink]="[menu.value.path]">{{menu.value.name}}
+                <span *ngIf="menu.value.isActive" class="sr-only">(current)</span></a>
+        </div>
+    </div>
+    <div>Weclome, username <a [routerLink]="['/logout']" class="badge text-light">Logout</a></div>
+</nav>

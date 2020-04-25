@@ -1,0 +1,59 @@
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <ngb-carousel *ngIf="images">
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="images[0]" alt="Random first slide">
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>10 seconds between slides...</h3>
+                        <p>This carousel uses customized default values.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="images[1]" alt="Random second slide">
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>No mouse events...</h3>
+                        <p>This carousel doesn't pause or resume on mouse events</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="images[2]" alt="Random third slide">
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>No keyboard...</h3>
+                        <p>This carousel uses customized default values.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper">
+                        <img [src]="images[3]" alt="Random fourth slide">
+                    </div>
+                    <div class="carousel-caption">
+                        <h3>And no wrap after last slide.</h3>
+                        <p>This carousel uses customized default values.</p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+        <div class="col-sm-4">
+            <h3>Item Name</h3>
+            <p>xxxjfldsjflsdlfdjsfljdsljflajfla</p>
+            <section>color: xxxx</section>
+            <section>size: 64G</section>
+            <section>manufacoturor: Sansung</section>
+            <p>
+                5.8-inch Super AMOLED Capacitive Touchscreen, 1440 x 2960 pixels with Corning Gorilla Glass 5
+                Android OS, Qualcomm Snapdragon 845, Octa-Core (4x2.7 GHz & 4x1.7 GHz), Adreno 630
+                Internal Memory: 64GB, 4GB RAM - microSD Up to 400GB
+                12MP Camera with f/1.5-2.4, 26mm lens, Dual Pixel PDAF & 8MP Front Camera with f/1.7, 25mm lens, Auto
+                HDR
+                Non-Removable 3,000mAh Lithium Ion Capacity
+            </p>
+        </div>
+    </div>
+</div>

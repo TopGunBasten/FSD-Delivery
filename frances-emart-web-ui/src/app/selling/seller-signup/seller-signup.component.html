@@ -1,0 +1,67 @@
+<div class="container h-100">
+    <div class="row mt-5 ">
+        <div class="col-sm-12 mt-2">
+            <h3>Become a seller</h3>
+        </div>
+    </div>
+    <form (ngSubmit)="registerSeller()"> 
+        <div class="row mt-4">
+            <div class="col-sm-6 form-group">
+                <label for="username">Username:</label>
+                 <input id="username" class="form-control" type="text">       
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="gstin">GSTIN:</label>
+                <input id="gstin" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="username">Password:</label>
+                 <input id="Password" class="form-control" type="password">       
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="brief">Brief About Company:</label>
+                <textarea id="brief" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                 <input id="confirmPassword" class="form-control" type="password">       
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="postalAddress">Postal Address:</label>
+                <textarea id="postalAddress" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="companyName">Company Name:</label>
+                 <input id="companyName" class="form-control" type="text">       
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="contactNumber">Contact Number:</label>
+                <input id="contactNumber" class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="webSite">Web Site:</label>
+                 <input id="webSite" class="form-control" type="text">       
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="email">Email:</label>
+                 <input id="email" class="form-control" type="email">       
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+            </div>
+            <div class="col-sm-6 text-right">
+                <button class="btn btn-primary" type="submit">Register</button>
+                <button class="ml-3 btn btn-outline-primary" type="reset">Reset</button> 
+            </div>
+        </div>
+    </form>
+</div>

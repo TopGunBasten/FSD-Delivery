@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col text-right">
+            <button (click)="open(newItem)" class="btn btn-primary">New Item</button>
+        </div>
+    </div>
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quality</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">00012</th>
+            <td>Iphone11 Plus</td>
+            <td>100</td>
+            <td>
+                <button (click)="open(updateItem)" class="btn btn-primary mr-2" >Edit</button>
+                <button (click)="open(updateStock)" class="btn btn-primary">Update Stock</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+
+<ng-template #newItem let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Item Detail</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <app-new-item></app-new-item>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #updateStock let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Item Detail</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <app-update-stock></app-update-stock>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #updateItem let-modal>
+  <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Item Detail</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <app-update-item></app-update-item>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
+    </div>
+</ng-template>

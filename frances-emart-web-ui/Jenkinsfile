@@ -1,0 +1,36 @@
+pipeline {
+   agent any
+   stages {
+      stage('Build') {
+         steps {
+            git credentialsId: 'ibm-github', url: 'https://github.ibm.com/FSD-Works/frances-emart-web-ui.git'
+            sh 'npm install'
+            sh "ng build --prod"
+         }
+      }
+      stage('Test'){
+         steps {
+             sh 'ng test --watch=false'
+        }
+      }
+      stage('Image Build'){
+        steps {
+          sh 'docker build . -t topgunbasten/emart-ui'
+        }
+      }
+      stage('Public Image') {
+         steps {
+            withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'password', usernameVariable: 'username')]) {
+              sh "docker login -u ${username} -p ${password}"
+              sh "docker push topgunbasten/emart-ui"
+            }
+
+         }
+      } 
+      stage('Deploy'){
+       steps {
+          sh "./deploy.sh"
+       }
+      }
+   }
+}

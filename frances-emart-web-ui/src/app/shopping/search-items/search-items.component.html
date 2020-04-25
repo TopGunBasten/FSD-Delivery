@@ -1,0 +1,129 @@
+<div class="contain-fluid">
+    <form>
+        <div class="row mt-5 ml-5">
+            <div class="col-sm-7 ">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            </div>
+            <div class="col-sm-5 text-center">
+                <button class="btn btn-outline-success w-50 my-6 my-sm-0" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-md-4 cl-sm-4 text-center">
+                <label class="mr-2" for="minPrice">Start Price</label>
+                <select class="w-50" id="minPrice">
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="col-md-4 cl-sm-4 text-center">
+                <label class="mr-2" for="minPrice">End Price</label>
+                <select class="w-50" id="minPrice">
+                    <option>1</option>
+                </select>
+            </div>
+            <div class="col-md-4 cl-sm-4 text-center">
+                <label class="mr-2" for="minPrice">Manufactuer</label>
+                <select class="w-50" id="minPrice">
+                    <option>1</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-4 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                        <button (click)="open(content)" class="btn btn-primary">View Detail</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-primary">View Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-primary">View Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+
+            <div class="col-md-4 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-primary">View Detail</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 col-sm-4">
+
+                <div class="card" style="width: 18rem;">
+                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-primary">View Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of the card's content.</p>
+                        <a href="#" class="btn btn-primary">View Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Item Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <app-item></app-item>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add To Cart</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Check Out</button>
+      </div>
+</ng-template>

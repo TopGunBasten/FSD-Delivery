@@ -1,0 +1,48 @@
+<div class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Welcome to eMart</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col">
+                        <label for="username">Username:</label>
+                        <input class="form-control" type="text" id="username" formControlName="username" required
+                            placeholder="Username or email">
+                    </div>
+                </div>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                        Username is required.
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <label for="password">Password:</label>
+                        <input class="form-control" type="password" id="password" formControlName="password" required>
+                    </div>
+                </div>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-outline-primary float-right">Login</button>
+                    </div>
+                </div>
+                <div *ngIf="message" class="mt-1 alert alert-danger">
+                    <div>
+                        {{message}}
+                    </div>
+                </div>
+            </form>
+            <div class="row mt-2">
+                <div class="col">
+                    <a [routerLink]="['/sSignup']" class="btn btn-outline-primary ">Sign up for Seller</a>
+                    <a [routerLink]="['/bSignup']" class="btn btn-outline-primary mt-1">Sign up for Buyer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
