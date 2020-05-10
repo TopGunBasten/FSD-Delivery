@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: emart-inventory-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${EMART_INVENTORY_SERVICE_DB_HOST:127.0.0.1}:${EMART_INVENTORY_SERVICE_DB_PORT:3306}/${EMART_INVENTORY_SERVICE_DB:emart_inventory_service_db}
+    username: ${EMART_INVENTORY_SERVICE_USER:emart_inventory_service_db}
+    password: ${EMART_INVENTORY_SERVICE_PASSWORD:Test123}
+  jpa:
+    show-sql: true
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+
+server:
+  port: 9012
+  servlet:
+    context-path:
+      /api/v1
+
+
+logback:
+  access:
+    enabled: true
+    tomcat:
+      enable-request-attributes: true
+    config: "classpath:logback-access.xml"
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9999/eureka/}

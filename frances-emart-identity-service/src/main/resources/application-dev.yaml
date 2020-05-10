@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: emart-identity-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/emart_identity_service_db
+    username: emart_identity_service_db
+    password: Test123
+  jpa:
+    show-sql: true
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password: Test123
+
+  
+server:
+  port: 9011
+  servlet:
+    context-path:
+      /api/v1
+
+
+
+logback:
+  access:
+    enabled: true
+    tomcat:
+      enable-request-attributes: true
+    config: "classpath:logback-access.xml"
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9999/eureka/}
+
+jwt:
+  config:
+    key: emart
+    ttl: 3600000

@@ -1,0 +1,29 @@
+
+spring:
+  application:
+    name: eamrt-cart
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 1
+    password: Test123
+
+server:
+  port: 9013
+  servlet:
+    context-path:
+      /api/v1
+
+logback:
+  access:
+    enabled: true
+    tomcat:
+      enable-request-attributes: true
+    config: "classpath:logback-access.xml"
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9999/eureka/}

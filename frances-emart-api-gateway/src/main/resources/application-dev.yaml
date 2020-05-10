@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: emart-api-gateway
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: Test123
+    database: 0
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled:
+          false
+
+server:
+  port: 9010
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:9999/eureka/}
+
+logback:
+  access:
+    enabled: true
+    tomcat:
+      enable-request-attributes: true
+    config: "classpath:logback-access.xml"
+
+zuul:
+  
+  routes:
+    emart-identity-service:
+      path: /identity/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      serviceId: emart-identity-service
