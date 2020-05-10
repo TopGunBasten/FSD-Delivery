@@ -1,0 +1,30 @@
+version: "3"
+services:
+  dev-redis:
+    image: redis
+    command: redis-server --requirepass Test123
+    ports:
+      - '6379:6379'
+  dev-mq:
+    image: rabbitmq
+    ports:
+       - '5672:5672'
+  dev-mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'emart'
+      MYSQL_USER: 'eamrt'
+      MYSQL_PASS: 'Test123'
+    ports:
+      - "3306:3306"
+    volumes: 
+      - dev-mysql:/var/lib/mysql
+      - $PWD/init.sql:/docker-entrypoint-initdb.d/rpa-init.sql
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+  dev-discovery-service:
+    image: "emart-discovery-service:1.0.0"
+    ports: 
+      - "9999:9999"
+volumes: 
+   dev-mysql:
+
