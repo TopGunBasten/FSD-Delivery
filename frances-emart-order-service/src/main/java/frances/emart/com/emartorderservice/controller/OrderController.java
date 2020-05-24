@@ -1,5 +1,7 @@
 package frances.emart.com.emartorderservice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +33,12 @@ public class OrderController {
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
+
+    @RequestMapping(path="/orders/byUser" ,method = RequestMethod.GET)
+    public List<Order> getOrderPerUser(@RequestParam("userId") String userId) {
+       return this.orderService.getOrderPerUser(userId);
+
+    }
+
 
 }

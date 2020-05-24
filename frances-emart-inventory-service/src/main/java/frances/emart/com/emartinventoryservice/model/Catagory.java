@@ -37,9 +37,9 @@ public class Catagory {
     @GeneratedValue(generator = "catagory-uuid")
     private String id;
 
-    @Column(name = "name", length =200 )
+    @Column(name = "name", nullable = false, length =200 )
     private String name;
     
-    @Column(name = "brief", length =500 )
+    @Column(name = "brief", nullable = false, length =500 )
     private String brief;
 }

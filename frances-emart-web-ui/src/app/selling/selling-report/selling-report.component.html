@@ -1,16 +1,26 @@
 <div class="container">
-    <form>
+    <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
     <div class="row mt-3">
         <div class="col-4 text-center">
             <label for="startDate mr-3">Start Date:</label>
-            <input id="startDate" type="datetime">
+            <input id="startDate" formControlName="startDate" type="date">
+            <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="mt-1 alert alert-danger">
+              <div *ngIf="startDate.errors.required">
+                Start Date is required.
+              </div>
+          </div>  
         </div> 
         <div class="col-4 text-center">
             <label for="endDate mr-3">End Date:</label>
-            <input id="endDate" type="datetime">
+            <input id="endDate" formControlName="endDate"  type="date">
+            <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="mt-1 alert alert-danger">
+              <div *ngIf="endDate.errors.required">
+                End Date is required.
+              </div>
+          </div>  
         </div>
         <div class="col-4 text-center">
-            <button class="btn btn-primary">Generate Report</button>
+            <button type="submit" class="btn btn-primary">Generate Report</button>
         </div>
     </div>
   </form>
@@ -19,18 +29,18 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Total Number</th>
+        <th scope="col">Order Id</th>
+        <th scope="col">Remarks</th>
         <th scope="col">Total</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let tran of trans">
       <tr>
-        <th scope="row">00012</th>
-        <td>Iphone11 Plus</td>
-        <td>10</td>
+        <th scope="row">{{tran.id | slice:24}}</th>
+        <td>{{tran.orderId | slice:24}}}</td>
+        <td>{{tran.remarks}}</td>
         <td>
-           $500000
+          {{tran.total | currency:'CNY'}}
         </td>
       </tr>
     </tbody>

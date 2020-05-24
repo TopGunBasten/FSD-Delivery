@@ -13,7 +13,8 @@ import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 import { OrderComponent } from './order/order.component';
 import { EmartCommonModule } from '../emart-common/emart-common.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -35,6 +36,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     EmartCommonModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ]
 })
 export class ShoppingModule { }

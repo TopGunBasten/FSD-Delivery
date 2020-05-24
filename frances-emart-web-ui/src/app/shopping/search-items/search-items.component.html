@@ -1,112 +1,60 @@
 <div class="contain-fluid">
-    <form>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
         <div class="row mt-5 ml-5">
             <div class="col-sm-7 ">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control" formControlName="searchText" type="search" placeholder="Search" aria-label="Search">
+                <div *ngIf="searchText.invalid && (searchText.dirty || searchText.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="searchText.errors.required">
+                        Search Text is required.
+                    </div>
+                </div> 
             </div>
             <div class="col-sm-5 text-center">
                 <button class="btn btn-outline-success w-50 my-6 my-sm-0" type="submit">Search</button>
             </div>
         </div>
     </form>
-    <div class="container-fluid">
+    <div *ngIf="items.length>0" class="container-fluid">
         <div class="row mt-4">
             <div class="col-md-4 cl-sm-4 text-center">
-                <label class="mr-2" for="minPrice">Start Price</label>
+                <label class="mr-2" for="minPrice" #minp (change)="onMaxPriceChange(minp.value)">Start Price</label>
                 <select class="w-50" id="minPrice">
+                    <option value="">any</option>
                     <option>1</option>
+                    <option>10</option>
+                    <option>100</option>
+                    <option>1000</option>
+                    <option>10000</option>
                 </select>
             </div>
             <div class="col-md-4 cl-sm-4 text-center">
-                <label class="mr-2" for="minPrice">End Price</label>
-                <select class="w-50" id="minPrice">
-                    <option>1</option>
+                <label class="mr-2" for="maxPrice" #maxp (change)="onMaxPriceChange(maxp.value)" >End Price</label>
+                <select class="w-50" id="maxPrice">
+                    <option value="">any</option>
+                    <option>10000</option>
+                    <option>100000</option>
+                    <option>1000000</option>
                 </select>
             </div>
             <div class="col-md-4 cl-sm-4 text-center">
-                <label class="mr-2" for="minPrice">Manufactuer</label>
-                <select class="w-50" id="minPrice">
-                    <option>1</option>
+                <label class="mr-2" for="manufacturer">Manufacturer</label>
+                <select class="w-50" id="manufacturer" #m (change)="onManufacturerChange(m.value)">
+                    <option value="">All</option>
+                    <option [value]="manufacturer" *ngFor="let manufacturer of manufacturers">{{manufacturer}}</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row mt-3">
-            <div class="col-md-4 col-sm-4">
+            <div *ngFor="let item of items;" class="col-md-4 col-sm-4">
                 <div class="card" style="width: 18rem;">
-                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
+                    <img src="{{item.thumbnail}}"
                         class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <button (click)="open(content)" class="btn btn-primary">View Detail</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-primary">View Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-primary">View Detail</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3">
-
-            <div class="col-md-4 col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-primary">View Detail</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-4 col-sm-4">
-
-                <div class="card" style="width: 18rem;">
-                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-primary">View Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://img11.360buyimg.com/cms/jfs/t1/91610/2/17157/84627/5e82ad5aE03e58624/37572440e1750b9e.png!q95.webp"
-                        class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                            of the card's content.</p>
-                        <a href="#" class="btn btn-primary">View Detail</a>
+                        <h5 class="card-title">{{item.name}}</h5>
+                        <p class="card-text">{{item.description}}</p>
+                        <button (click)="open(content,item)" class="btn btn-primary">View Detail</button>
                     </div>
                 </div>
             </div>
@@ -121,9 +69,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <app-item></app-item>
+      <app-item [item]="selectItem"></app-item>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add To Cart</button>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Check Out</button>
+        <button type="button" class="btn btn-outline-dark" (click)="onAddItemToChart(selectItem)">Add To Cart</button>
+        <button type="button" class="btn btn-outline-dark" (click)="onCheckOut(selectItem)">Check Out</button>
       </div>
 </ng-template>

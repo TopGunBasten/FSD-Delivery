@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col text-right">
-            <button (click)="open(newItem)" class="btn btn-primary">New Item</button>
+            <button (click)="open(newItem, null)" class="btn btn-primary">New Item</button>
         </div>
     </div>
     <table class="table mt-3">
@@ -13,14 +13,14 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let item of items">
           <tr>
-            <th scope="row">00012</th>
-            <td>Iphone11 Plus</td>
-            <td>100</td>
+            <th scope="row">{{item.id | slice:24}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.stockNumber}}</td>
             <td>
-                <button (click)="open(updateItem)" class="btn btn-primary mr-2" >Edit</button>
-                <button (click)="open(updateStock)" class="btn btn-primary">Update Stock</button>
+                <button (click)="open(updateItem,item)" class="btn btn-primary mr-2" >Edit</button>
+                <button (click)="open(updateStock,item)" class="btn btn-primary">Update Stock</button>
             </td>
           </tr>
         </tbody>
@@ -36,11 +36,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <app-new-item></app-new-item>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-    </div>
+    <app-new-item (closePop)="subsribePop($event)"></app-new-item>
 </ng-template>
 
 <ng-template #updateStock let-modal>
@@ -50,11 +46,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <app-update-stock></app-update-stock>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-    </div>
+    <app-update-stock [item]="selectItem" (closeStockPop)="subsribeUpdatePop($event)" ></app-update-stock>
 </ng-template>
 
 <ng-template #updateItem let-modal>
@@ -64,9 +56,5 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <app-update-item></app-update-item>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cancel</button>
-    </div>
+    <app-update-item [item]="selectItem" (closeUpdatePop)="subsribeUpdatePop($event)" ></app-update-item>
 </ng-template>

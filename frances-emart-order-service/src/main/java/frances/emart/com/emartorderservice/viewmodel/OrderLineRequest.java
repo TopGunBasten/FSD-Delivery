@@ -15,5 +15,7 @@ public class OrderLineRequest {
     @NotBlank  
     private BigDecimal price;
     @NotBlank
-    private Number quantity;
+    private int quantity;
+    @NotBlank
+    private String thumbnail;
 }

@@ -35,6 +35,7 @@ public class OrderLine {
         this.price = line.getPrice();
         this.quantity = line.getQuantity();
         this.order = order;
+        this.thumbnail = line.getThumbnail();
     }
 
     @Id
@@ -52,8 +53,11 @@ public class OrderLine {
     @Column(name="price",nullable = false)
     private BigDecimal price;
 
-    @Column(name="quantity",nullable = false)
-    private Number quantity;
+    @Column(name = "quantity", nullable = false, columnDefinition="INT")
+    private int quantity;
+
+    @Column(name="thumbnail",nullable = false)
+    private String thumbnail;
     
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = Order.class)

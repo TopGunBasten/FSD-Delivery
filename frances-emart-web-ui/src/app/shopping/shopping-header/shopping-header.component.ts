@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Menu } from '../../emart-common/models/menu';
+import { EmartCacheService } from '../../emart-common/auth/emart-cache.service';
+import { EmartUser } from 'src/app/emart-common/models/emart-user';
 
 @Component({
   selector: 'app-shopping-header',
@@ -9,7 +11,7 @@ import { Menu } from '../../emart-common/models/menu';
 })
 export class ShoppingHeaderComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router,  private cacheService: EmartCacheService) {
 
   }
 
@@ -21,8 +23,11 @@ export class ShoppingHeaderComponent implements OnInit {
   };
 
   selectMenu: Menu;
+  username: string;
 
   ngOnInit(): void {
+    const user = this.cacheService.getItem<EmartUser>('emart-user');
+    if (user) { this.username = user.userName; }
 
     for (const key in this.menus) {
       if (this.menus[key].path === this.router.url) {

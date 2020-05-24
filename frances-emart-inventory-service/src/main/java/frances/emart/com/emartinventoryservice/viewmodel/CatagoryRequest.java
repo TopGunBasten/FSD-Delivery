@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class CatagoryRequest {
+    
     @NotBlank
     private String name;
     

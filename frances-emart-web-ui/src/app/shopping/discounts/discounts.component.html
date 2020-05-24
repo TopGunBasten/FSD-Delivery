@@ -8,12 +8,12 @@
             <th scope="col">Applied Date</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let discount of discounts">
           <tr>
-            <th scope="row">SJFJKS</th>
-            <td>2020/01/23</td>
-            <td>2020/12/23</td>
-            <td></td>
+            <th scope="row">{{discount.code | slice:24}}</th>
+            <td>{{discount.startDate | date: 'fullDate'}}</td>
+            <td>{{discount.endDate | date: 'fullDate'}}</td>
+            <td>{{discount.applieDate |  date: 'fullDate'}}</td>
           </tr>
         </tbody>
       </table>

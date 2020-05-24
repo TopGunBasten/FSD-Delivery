@@ -1,0 +1,32 @@
+{
+    "/identity/*": {
+      "target": "http://localhost:9010",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/inventory/*": {
+      "target": "http://localhost:9010",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/cart/*": {
+      "target": "http://localhost:9010",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/financial/*": {
+      "target": "http://localhost:9010",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/order/*": {
+      "target": "http://localhost:9010",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+}

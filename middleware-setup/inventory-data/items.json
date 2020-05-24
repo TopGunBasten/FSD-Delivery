@@ -1,0 +1,46 @@
+[
+    {
+        "price": 5999,
+        "name":"Apple iPhone 11",
+        "stockNumber": 10000,
+        "remarks": "Color:Red/While/Black/Yellow/Pruch/Green<br>version:64G/128G/256G",
+        "description": "(A2223) 128GB 黑色 移动联通电信4G手机 双卡双待",
+        "thumbnail": "https://img14.360buyimg.com/n4/jfs/t1/120928/12/1609/170593/5ebe5a97E105d548a/d45c1549423cbe99.jpg",
+        "detailImage1": "https://img12.360buyimg.com/n5/s54x54_jfs/t1/120928/12/1609/170593/5ebe5a97E105d548a/d45c1549423cbe99.jpg",
+        "detailImage2": "https://img12.360buyimg.com/n5/s54x54_jfs/t1/59022/28/10293/141808/5d78088fEf6e7862d/68836f52ffaaad96.jpg",
+        "detailImage3": "https://img12.360buyimg.com/n5/s54x54_jfs/t1/45954/33/10562/97168/5d780893Eaec0fe47/ee567a1dea515d38.jpg",
+        "detailImage4": "https://img12.360buyimg.com/n5/s54x54_jfs/t1/60950/5/9837/104923/5d780897E82963984/08fed8837c92433a.jpg",
+        "detailImage5": "https://img12.360buyimg.com/n5/s54x54_jfs/t1/80220/18/9892/163090/5d78089cEda2f9674/da3b18358e68cfca.jpg",
+        "manufacturer": "Apple"
+    },
+    {
+        "name":"Apple iPhone 11 Pro Max",
+        "price": 10899,
+        "stockNumber": 100,
+        "remarks": "Color:Red/While/Black/Yellow/Pruch/Green<br>version:64G/128G/256G",
+        "description": "(A2220) 256GB 暗夜绿色 移动联通电信4G手机 双卡双待",
+        "thumbnail": "https://img14.360buyimg.com/n4/jfs/t1/112338/28/6775/204207/5ebe6212Edda13599/7d790a8ffc8bff06.jpg",
+        "detailImage1": "https://img13.360buyimg.com/n5/s54x54_jfs/t1/112338/28/6775/204207/5ebe6212Edda13599/7d790a8ffc8bff06.jpg",
+        "detailImage2": "https://img13.360buyimg.com/n5/s54x54_jfs/t1/51521/12/10437/169738/5d780c40Eda0f0e1d/ccbc7745b343f87d.jpg",
+        "detailImage3": "https://img13.360buyimg.com/n5/s54x54_jfs/t1/77747/26/9923/97055/5d780c45Eefd0a248/c67db020adf6ebc9.jpg",
+        "detailImage4": "https://img13.360buyimg.com/n5/s54x54_jfs/t1/53746/1/10495/156398/5d780c49Efe604bad/20c2e6e5daf64ea1.jpg",
+        "detailImage5": "https://img13.360buyimg.com/n5/s54x54_jfs/t1/65291/21/9876/90075/5d780c4eE8c9b4043/9abe239c4a84bd06.jpg",
+        "manufacturer": "Apple"
+    },
+
+    {
+        "name":"HUAWEI P40 Pro",
+        "price": 6488,
+        "stockNumber": 101,
+        "remarks": "Color:Red/While/Black/Yellow/Pruch/Green<br>version:8+64G/8+128G/8+256G",
+        "description": "华为 HUAWEI P40 Pro 麒麟990 5G SoC芯片 5000万超感知徕卡四摄 50倍数字变焦 8GB+256GB亮黑色全网通5G手机",
+        "thumbnail": "https://img14.360buyimg.com/n4/jfs/t1/123617/5/2273/112990/5ec3a4d8E04d19ba3/bce6af0f56d4bd72.jpg",
+        "detailImage1": "https://img10.360buyimg.com/n5/s54x54_jfs/t1/123617/5/2273/112990/5ec3a4d8E04d19ba3/bce6af0f56d4bd72.jpg",
+        "detailImage2": "https://img10.360buyimg.com/n5/s54x54_jfs/t1/108982/35/10148/458075/5e7cb63cE3d79c1fb/c94ddcb77d9de42a.jpg",
+        "detailImage3": "https://img10.360buyimg.com/n5/s54x54_jfs/t1/100996/35/16785/313168/5e7cb63dE5996073b/051215438358b75d.jpg",
+        "detailImage4": "https://img10.360buyimg.com/n5/s54x54_jfs/t1/109517/3/10267/198554/5e7cb63dE7c35587a/a0ccea9e6fd5a855.jpg",
+        "detailImage5": "https://img10.360buyimg.com/n5/s54x54_jfs/t1/110460/27/10386/246073/5e7cb63eEa36aacad/553eb10607e8a36a.jpg",
+        "manufacturer": "HUAWEI"
+    }
+
+]

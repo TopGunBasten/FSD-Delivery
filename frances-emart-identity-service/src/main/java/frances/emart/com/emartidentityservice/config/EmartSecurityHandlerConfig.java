@@ -22,7 +22,7 @@ public class EmartSecurityHandlerConfig {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 response.setStatus(HttpStatus.FORBIDDEN.value());
                 mapper.writeValue(response.getWriter(),
-                        EmartResponse.of("you cann't perform the action", "401", HttpStatus.FORBIDDEN));
+                        EmartResponse.of("you cann't perform the action", "403", HttpStatus.FORBIDDEN));
             }
 
         };

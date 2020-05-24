@@ -17,6 +17,8 @@ public class CartItem implements Serializable {
         id = UUID.randomUUID().toString();
     }
     private String id;
+
+    private String thumbnail;
     @NotBlank
     private String itemId;
     @NotBlank

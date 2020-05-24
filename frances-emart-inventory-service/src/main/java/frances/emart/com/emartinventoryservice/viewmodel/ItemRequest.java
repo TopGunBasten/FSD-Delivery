@@ -3,6 +3,7 @@ package frances.emart.com.emartinventoryservice.viewmodel;
 import java.math.BigDecimal;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -16,10 +17,13 @@ public class ItemRequest {
     private String subcatagoryId;
 
     @NotBlank
+    private String name;
+
+    @NotNull
     private BigDecimal price;
 
-    @NotBlank
-    private Number stockNumber;
+    @NotNull
+    private int stockNumber;
 
     @NotBlank
     private String remark;

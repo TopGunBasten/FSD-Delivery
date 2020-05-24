@@ -28,8 +28,8 @@ class EmartFinancialServiceApplicationTests {
 	@Test
 	void createDisocuntTest(){
 		this.request = new DiscountRequest();
-		this.request.setBuyerId(UUID.randomUUID().toString());
-		this.request.setDescription("testing discounting");
+		this.request.setBuyerId("2c978082722afe8401722b7bc2610003");
+		this.request.setDescription("testing discounting1");
 		this.request.setPercent(5);
 		this.request.setStartDate(LocalDateTime.now());
 		this.request.setEndDate(LocalDateTime.now().plusYears(1));

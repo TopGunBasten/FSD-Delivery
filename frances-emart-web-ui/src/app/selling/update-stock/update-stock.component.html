@@ -1,18 +1,29 @@
-<div class="modal-body">
-    <form>
+<form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
         <div class="row">
             <div class="col">
-                ID:000132
+                ID:{{item.id | slice:24 }}
             </div>
             <div class="col">
-                Name:Rong Yao
+                Name:{{item.name}}
             </div>
         </div>
         <div class="form-group row mt-3">
-            <label for="sockerNumber" class="col-sm-4 col-form-label">Socker Number:</label>
-            <div class="col-sm-6">
-                <input class="form-control" id="sockerNumber" type="number">
+                <label for="stockNumber" class="col-sm-4 col-form-label">Stock Number:</label>
+                <div class="col-sm-6">
+                  <input formControlName="stockNumber"  class="form-control" id="stockNumber" type="number">
+                  <div *ngIf="stockNumber.invalid && (stockNumber.dirty || stockNumber.touched)" class="mt-1 alert alert-danger">
+                      <div *ngIf="stockNumber.errors.required">
+                          Stock Number is required.
+                      </div>
+                      <div *ngIf="stockNumber.errors.min">
+                          Stock Number has to be => 0.
+                      </div>
+                  </div> 
+              </div>
             </div>
-        </div>
-    </form>
-</div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark" >Update</button>
+    </div>
+</form>

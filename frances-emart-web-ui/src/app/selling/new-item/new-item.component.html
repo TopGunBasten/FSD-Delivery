@@ -1,86 +1,198 @@
+<form [formGroup]="newItemForm" (ngSubmit)="onSubmit()">
 <div class="modal-body">
-  <form>
     <div class="form-group row mt-1">
         <label for="catagory" class="col-sm-4 col-form-label">Catagory:</label>
         <div class="col-sm-6">
-            <select class="form-control" id="catagory">
-
+            <select formControlName="catagory"  #currentCatagory (change)="onCatagoryChange(currentCatagory.value)" class="form-control" id="catagory">
+                <option value="">Please select a catagory</option>
+                <option [value]="catagory.id" *ngFor="let catagory of catagories" value="">{{catagory.name}}</option>
             </select>
+            <div *ngIf="catagory.invalid && (catagory.dirty || catagory.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="catagory.errors.required">
+                    Catagory is required.
+                </div>
+            </div>  
         </div>
     </div>
     <div class="form-group row mt-1">
         <label for="subCatagory" class="col-sm-4 col-form-label">Sub Catagory:</label>
         <div class="col-sm-6">
-            <select class="form-control" id="subCatagory">
-
+            <select formControlName="subCatagory" class="form-control" id="subCatagory">
+                <option value="">Please select a sub catagory</option>
+                <option [value]="subCatagory.id" *ngFor="let subCatagory of subCatagories" value="">{{subCatagory.name}}</option>
+                
             </select>
+            <div *ngIf="subCatagory.invalid && (subCatagory.dirty || subCatagory.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="subCatagory.errors.required">
+                    Sub Catagory is required.
+                </div>
+            </div> 
         </div>
     </div>
     <div class="form-group row mt-1">
         <label for="name" class="col-sm-4 col-form-label">Name:</label>
         <div class="col-sm-6">
-            <input class="form-control" id="name" type="text">
+            <input formControlName="name" class="form-control" id="name" type="text">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="name.errors.required">
+                    Name is required.
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="form-group row mt-1">
+        <label for="manufacturer" class="col-sm-4 col-form-label">Manufacturer:</label>
+        <div class="col-sm-6">
+            <input formControlName="manufacturer" class="form-control" id="manufacturer" type="text">
+            <div *ngIf="manufacturer.invalid && (manufacturer.dirty || manufacturer.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="manufacturer.errors.required">
+                    Manufacturer is required.
+                </div>
+            </div> 
         </div>
     </div>
     <div class="form-group row mt-1">
         <label for="description" class="col-sm-4 col-form-label">Description:</label>
         <div class="col-sm-6">
-            <textarea id="description" class="form-control" id="name"></textarea>
+            <textarea formControlName="description" id="description" class="form-control" id="description"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="description.errors.required">
+                    Description is required.
+                </div>
+            </div> 
         </div>
     </div>
     <div class="form-group row mt-1">
         <label for="price" class="col-sm-4 col-form-label">Price:</label>
         <div class="col-sm-6">
-            <input class="form-control" id="price" type="number">
+            <input formControlName="price"  class="form-control" id="price" type="number">
+            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="price.errors.required">
+                    Price is required.
+                </div>
+                <div *ngIf="price.errors.min">
+                    Price has to be => 1.
+                </div>
+            </div> 
         </div>
     </div>
     <div class="form-group row mt-1">
         <label for="stockNumber" class="col-sm-4 col-form-label">Stock Number:</label>
         <div class="col-sm-6">
-            <input class="form-control" id="stockNumber" type="number">
+            <input formControlName="stockNumber"  class="form-control" id="stockNumber" type="number">
+            <div *ngIf="stockNumber.invalid && (stockNumber.dirty || stockNumber.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="stockNumber.errors.required">
+                    Stock Number is required.
+                </div>
+                <div *ngIf="stockNumber.errors.min">
+                    Stock Number has to be => 0.
+                </div>
+            </div> 
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="Thumbnail" class="col-sm-4 col-form-label">Thumbnail Image</label>
+        <label for="thumbnail" class="col-sm-4 col-form-label">Thumbnail Image</label>
         <div class="col-sm-6">
-            <input class="form-control" id="Thumbnail" type="url">
+            <input formControlName="thumbnail" class="form-control" id="thumbnail" type="url">
+            <div *ngIf="thumbnail.invalid && (thumbnail.dirty || thumbnail.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="thumbnail.errors.required">
+                    Thumbnail Image is required.
+                </div>
+                <div *ngIf="thumbnail.errors.pattern">
+                    Thumbnail Image url is incorrect
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="Thumbnail" class="col-sm-4 col-form-label">Detail Image 1</label>
+        <label for="detailImage1" class="col-sm-4 col-form-label">Detail Image 1</label>
         <div class="col-sm-6">
-            <input class="form-control" id="Thumbnail" type="url">
+            <input formControlName="detailImage1" class="form-control" id="detailImage1" type="url">
+            <div *ngIf="detailImage1.invalid && (detailImage1.dirty || detailImage1.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="detailImage1.errors.required">
+                    Deteail Image 1  is required.
+                </div>
+                <div *ngIf="detailImage1.errors.pattern">
+                    Deteail Image 1 url is incorrect
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="Thumbnail" class="col-sm-4 col-form-label">Detail Image 2</label>
+        <label for="detailImage2" class="col-sm-4 col-form-label">Detail Image 2</label>
         <div class="col-sm-6">
-            <input class="form-control" id="Thumbnail" type="url">
+            <input formControlName="detailImage2" class="form-control" id="detailImage2" type="url">
+        </div>
+        <div *ngIf="detailImage2.invalid && (detailImage2.dirty || detailImage2.touched)" class="mt-1 alert alert-danger">
+            <div *ngIf="detailImage2.errors.required">
+                Deteail Image 2  is required.
+            </div>
+            <div *ngIf="detailImage2.errors.pattern">
+                Deteail Image 2 url is incorrect
+            </div>
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="Thumbnail" class="col-sm-4 col-form-label">Detail Image 3</label>
+        <label for="detailImage3" class="col-sm-4 col-form-label">Detail Image 3</label>
         <div class="col-sm-6">
-            <input class="form-control" id="Thumbnail" type="url">
+            <input formControlName="detailImage3" class="form-control" id="detailImage3" type="url">
+            <div *ngIf="detailImage3.invalid && (detailImage3.dirty || detailImage3.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="detailImage3.errors.required">
+                    Deteail Image 3  is required.
+                </div>
+                <div *ngIf="detailImage3.errors.pattern">
+                    Deteail Image 3 url is incorrect
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="Thumbnail" class="col-sm-4 col-form-label">Detail Image 4</label>
+        <label for="detailImage4" class="col-sm-4 col-form-label">Detail Image 4</label>
         <div class="col-sm-6">
-            <input class="form-control" id="Thumbnail" type="url">
+            <input formControlName="detailImage4" class="form-control" id="detailImage4" type="url">
+            <div *ngIf="detailImage4.invalid && (detailImage4.dirty || detailImage4.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="detailImage4.errors.required">
+                    Deteail Image 4  is required.
+                </div>
+                <div *ngIf="detailImage4.errors.pattern">
+                    Deteail Image 4 url is incorrect
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="Thumbnail" class="col-sm-4 col-form-label">Detail Image 5</label>
+        <label for="detailImage5" class="col-sm-4 col-form-label">Detail Image 5</label>
         <div class="col-sm-6">
-            <input class="form-control" id="Thumbnail" type="url">
+            <input formControlName="detailImage5" class="form-control" id="detailImage5" type="url">
+            <div *ngIf="detailImage5.invalid && (detailImage5.dirty || detailImage5.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="detailImage5.errors.required">
+                    Deteail Image 5 is required.
+                </div>
+                <div *ngIf="detailImage5.errors.pattern">
+                    Deteail Image 5 url is incorrect
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group row mt-1">
-        <label for="remarks" class="col-sm-4 col-form-label">Remarks</label>
+        <label for="remark" class="col-sm-4 col-form-label">Remark</label>
         <div class="col-sm-6">
-            <angular-editor  [config]="editorConfig"></angular-editor>
+            <angular-editor formControlName="remark" [config]="editorConfig"></angular-editor>
+            <div *ngIf="remark.invalid && (remark.dirty || remark.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="remark.errors.required">
+                    Remarks is required.
+                </div>
+            </div>
         </div>
     </div>
-  </form>
 </div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark" >Add</button>
+    <button type="reset" class="btn btn-outline-dark">Reset</button>
+</div>
+<div *ngIf="errorMessage" class="mt-1 alert alert-danger">
+    <div>
+        {{errorMessage}}
+    </div>
+</div>
+</form>

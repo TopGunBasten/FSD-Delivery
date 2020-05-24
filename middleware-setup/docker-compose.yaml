@@ -2,15 +2,21 @@ version: "3"
 services:
   dev-redis:
     image: redis
+    networks:
+    - emart
     command: redis-server --requirepass Test123
     ports:
       - '6379:6379'
   dev-mq:
     image: rabbitmq
+    networks:
+    - emart
     ports:
        - '5672:5672'
   dev-mysql:
     image: mysql:5.7
+    networks:
+    - emart
     environment:
       MYSQL_ROOT_PASSWORD: 'emart'
       MYSQL_USER: 'eamrt'
@@ -21,10 +27,36 @@ services:
       - dev-mysql:/var/lib/mysql
       - $PWD/init.sql:/docker-entrypoint-initdb.d/rpa-init.sql
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
-  dev-discovery-service:
-    image: "emart-discovery-service:1.0.0"
-    ports: 
-      - "9999:9999"
-volumes: 
-   dev-mysql:
+  # dev-discovery-service:
+  #   image: "emart-discovery-service:1.0.0"
+  #   networks:
+  #   - emart
+  #   ports: 
+  #     - "9999:9999"
+  # dev-identity-service:
+  #   image: "emart-identity-service:1.0"
+  #   networks:
+  #   - emart
+  #   environment: 
+  #   - EMART_IDENTITY_SERVICE_DB_HOST=dev-mysql
+  #   - EMART_IDENTITY_SERVICE_DB_PORT=3306
+  #   - EMART_IDENTITY_SERVICE_DB=emart_identity_service_db
+  #   - EMART_IDENTITY_SERVICE_DB_PASSWORD=Test123
+  #   - EMART_REDIS_HOST=dev-redis
+  #   - EMART_REDIS_PORT=6379
+  #   - EMART_REDIS_PASSWORD=Test123
+  #   - EUREKA_URI=http://dev-discovery-service:9999/eureka
+  # dev-api-gateway:
+  #   image: "emart-api-gateway:1.0"
+  #   networks:
+  #   - emart
+  #   ports: 
+  #     - "9010:9010"
+  #   environment: 
+  #   - EUREKA_URI=http://dev-discovery-service:9999/eureka
 
+volumes: 
+  dev-mysql:
+
+networks: 
+  emart:

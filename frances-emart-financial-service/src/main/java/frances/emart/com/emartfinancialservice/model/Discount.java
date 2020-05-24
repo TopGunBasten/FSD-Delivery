@@ -51,7 +51,7 @@ public class Discount {
 
     @Column(name="percent", nullable = false)
     private int percent; 
-
+    
     @Column(name="buyer_id", length = 64)
     private String buyerId;
 

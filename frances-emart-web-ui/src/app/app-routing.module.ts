@@ -12,9 +12,11 @@ import { DiscountsComponent } from './shopping/discounts/discounts.component';
 import { SellingHomeComponent } from './selling/selling-home/selling-home.component';
 import { ItemManagementComponent } from './selling/item-management/item-management.component';
 import { SellingReportComponent } from './selling/selling-report/selling-report.component';
+import { ErrorComponent } from './emart-common/error/error.component';
 
 
 const routes: Routes = [
+  {path: 'error', component: ErrorComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'bSignup', component: BuyerSignupComponent},

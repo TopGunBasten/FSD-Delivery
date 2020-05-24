@@ -38,4 +38,10 @@ public class CartService {
         cart.removeItemFromCart(item);
         this.cartRepository.opsForValue().set(userId, cart);
     }
+
+    public void cleanCart(String userId){
+        EmartCart cart =this.getCart(userId);
+        cart.clearCart();
+        this.cartRepository.opsForValue().set(userId, cart);
+    }
 }

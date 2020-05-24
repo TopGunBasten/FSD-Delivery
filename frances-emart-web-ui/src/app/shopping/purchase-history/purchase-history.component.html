@@ -8,12 +8,12 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let order of orders">
           <tr>
-            <th scope="row">1</th>
-            <td>JDJSL1232</td>
-            <td>2009/01/23</td>
-            <td><button (click)="open(content)" class="btn btn-primary">View</button></td>
+            <th scope="row">#{{order.id | slice:24}}</th>
+            <td>{{order.createDate | date:'fullDate'}}</td>
+            <td>{{order.total | currency:'CNY'}}</td>
+            <td><button (click)="open(content, order)" class="btn btn-primary">View</button></td>
           </tr>
         </tbody>
       </table>
@@ -27,7 +27,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <app-order></app-order>
+    <app-order [order]="currentOrder"></app-order>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
     </div>

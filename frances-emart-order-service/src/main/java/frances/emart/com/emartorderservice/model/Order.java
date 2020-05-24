@@ -27,6 +27,7 @@ public class Order {
         this.buyerId = request.getBuyerId();
         this.discountCode = request.getDiscountCode();
         this.discountPercentage = request.getDiscountPercentage();
+        this.taxRate = request.getTaxRate();
         this.status= OrderStatus.ACCEPT;
         this.lines = new ArrayList<>();
         createDate = LocalDateTime.now();
@@ -46,11 +47,14 @@ public class Order {
     @Column(name="buyer_id",nullable = false, length = 64)
     private String buyerId;
 
-    @Column(name="discount_code",nullable = false, length = 64)
+    @Column(name="discount_code", length = 64)
     private String discountCode;
 
-    @Column(name="discount_percentage",nullable = false)
+    @Column(name="discount_percentage")
     private int discountPercentage;
+
+    @Column(name="tax_rate",nullable = false)
+    private int taxRate;
 
     @Column(name= "create_date", columnDefinition = "TIMESTAMP")
     private LocalDateTime createDate;

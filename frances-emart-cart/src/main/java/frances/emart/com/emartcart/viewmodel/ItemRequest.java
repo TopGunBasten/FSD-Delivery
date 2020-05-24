@@ -1,6 +1,7 @@
 package frances.emart.com.emartcart.viewmodel;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import frances.emart.com.emartcart.model.CartItem;
 import lombok.Data;
@@ -10,7 +11,7 @@ public class ItemRequest {
 
     @NotBlank
     private String userId;
-    @NotBlank
-    private CartItem cart;
+    @NotNull
+    private CartItem cartItem;
     
 }

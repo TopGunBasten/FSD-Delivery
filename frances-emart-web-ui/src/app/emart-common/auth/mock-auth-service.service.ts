@@ -15,6 +15,12 @@ export class MockAuthServiceService implements AuthService {
      this.initBuyer();
      this.initSeller();
    }
+  getToken(): string {
+    throw new Error("Method not implemented.");
+  }
+  clearToken() {
+    throw new Error("Method not implemented.");
+  }
 
   login(usename: string, password: string): Observable<EmartUser> {
     if (usename === this.seller.userName && password === this.seller.password) {

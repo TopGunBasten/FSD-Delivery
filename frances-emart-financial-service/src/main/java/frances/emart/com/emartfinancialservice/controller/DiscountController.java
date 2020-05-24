@@ -17,11 +17,17 @@ public class DiscountController {
     @Autowired
     private DiscountService discountService;
 
-    @RequestMapping(path="/dicounts/all" ,method = RequestMethod.GET)
+    @RequestMapping(path="/discounts/all" ,method = RequestMethod.GET)
     public List<Discount> getDiscountByBuyerId(@RequestParam("buyerId") String buyerId) {
 
         return this.discountService.getUserDiscounts(buyerId);
 
+    }
+
+
+    @RequestMapping(path="/discounts/active" ,method = RequestMethod.GET)
+    public List<Discount> getActiveDiscountByBuyerId(@RequestParam("buyerId") String buyerId) {
+        return this.discountService.getUserActiveDiscounts(buyerId);
     }
     
 }

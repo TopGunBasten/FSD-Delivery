@@ -1,6 +1,7 @@
 package frances.emart.com.emartfinancialservice.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +13,15 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "emart_transcation")
+@AllArgsConstructor
+@NoArgsConstructor
 public class EmartTranscation {
 
     @Id
@@ -46,5 +51,8 @@ public class EmartTranscation {
 
     @Column(name="exernal_trans_id")
     private String exernalTransId;
+
+    @Column(name= "create_date", columnDefinition = "TIMESTAMP")
+    private LocalDateTime createdDate; 
 
 }

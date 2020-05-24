@@ -4,55 +4,112 @@
             <h3>Become a seller</h3>
         </div>
     </div>
-    <form (ngSubmit)="registerSeller()"> 
+    <form [formGroup]="signUpForm" (ngSubmit)="registerSeller()"> 
         <div class="row mt-4">
             <div class="col-sm-6 form-group">
                 <label for="username">Username:</label>
-                 <input id="username" class="form-control" type="text">       
+                 <input formControlName="username" required id="username" class="form-control" type="text"> 
+                 <div *ngIf="username.invalid && (username.dirty || username.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                        Username is required.
+                    </div>
+                </div>      
             </div>
             <div class="col-sm-6 form-group">
                 <label for="gstin">GSTIN:</label>
-                <input id="gstin" class="form-control" type="text">
+                <input formControlName="gstin" required id="gstin" class="form-control" type="text">
+                <div *ngIf="gstin.invalid && (gstin.dirty || gstin.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="gstin.errors.required">
+                        GSTIN is required.
+                    </div>
+                </div> 
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
-                <label for="username">Password:</label>
-                 <input id="Password" class="form-control" type="password">       
+                <label for="password">Password:</label>
+                 <input formControlName="password" id="password" class="form-control" type="password"> 
+                 <div *ngIf="password.invalid && (password.dirty || password.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Password is required.
+                    </div>
+                </div>       
             </div>
             <div class="col-sm-6 form-group">
                 <label for="brief">Brief About Company:</label>
-                <textarea id="brief" class="form-control"></textarea>
+                <textarea formControlName="brief" id="brief" class="form-control"></textarea>
+                <div *ngIf="brief.invalid && (brief.dirty || brief.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="brief.errors.required">
+                        Brief is required.
+                    </div>
+                </div> 
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
                 <label for="confirmPassword">Confirm Password:</label>
-                 <input id="confirmPassword" class="form-control" type="password">       
+                 <input formControlName="confirmPassword" id="confirmPassword" class="form-control" type="password">  
+                 <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="confirmPassword.errors.required">
+                        Confirm Password is required.
+                    </div>
+                    <div *ngIf="confirmPassword.errors.confirmedValidator">Passwords must match</div>
+                </div>      
             </div>
             <div class="col-sm-6 form-group">
                 <label for="postalAddress">Postal Address:</label>
-                <textarea id="postalAddress" class="form-control"></textarea>
+                <textarea formControlName="postalAddress" id="postalAddress" class="form-control"></textarea>
+                <div *ngIf="postalAddress.invalid && (postalAddress.dirty || postalAddress.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="postalAddress.errors.required">
+                        Postal Address is required.
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
                 <label for="companyName">Company Name:</label>
-                 <input id="companyName" class="form-control" type="text">       
+                 <input formControlName="companyName" id="companyName" class="form-control" type="text">    
+                 <div *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="companyName.errors.required">
+                        Brief is required.
+                    </div>
+                </div>   
             </div>
             <div class="col-sm-6 form-group">
                 <label for="contactNumber">Contact Number:</label>
-                <input id="contactNumber" class="form-control" type="text">
+                <input formControlName="contactNumber" id="contactNumber" class="form-control" type="text">
+                <div *ngIf="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="contactNumber.errors.required">
+                        Contact Number is required.
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
                 <label for="webSite">Web Site:</label>
-                 <input id="webSite" class="form-control" type="text">       
+                 <input id="webSite" formControlName="webSite" class="form-control" type="text"> 
+                 <div *ngIf="webSite.invalid && (webSite.dirty || webSite.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="webSite.errors.required">
+                        Web Site is required.
+                    </div>
+                    <div *ngIf="webSite.errors.pattern">
+                        Web Site is incorrect format.
+                    </div>
+                </div>      
             </div>
             <div class="col-sm-6 form-group">
                 <label for="email">Email:</label>
-                 <input id="email" class="form-control" type="email">       
+                 <input id="email" formControlName="email" class="form-control" type="email">  
+                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="mt-1 alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email.errors.email">
+                        Email is incorrect.
+                    </div>
+                </div>     
             </div>
         </div>
         <div class="row">
@@ -61,6 +118,11 @@
             <div class="col-sm-6 text-right">
                 <button class="btn btn-primary" type="submit">Register</button>
                 <button class="ml-3 btn btn-outline-primary" type="reset">Reset</button> 
+            </div>
+        </div>
+        <div *ngIf="errorMessage" class="mt-1 alert alert-danger">
+            <div>
+                {{errorMessage}}
             </div>
         </div>
     </form>

@@ -1,16 +1,15 @@
 spring:
   application:
     name: emart-api-gateway
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    password: Test123
-    database: 0
   cloud:
     loadbalancer:
-      ribbon:
+      retry:
+        enabled: 
+          true
+      ribbon: 
         enabled:
-          false
+          true
+
 
 server:
   port: 9010
@@ -29,10 +28,39 @@ logback:
       enable-request-attributes: true
     config: "classpath:logback-access.xml"
 
+
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+  eureka:
+    enabled: true
+
 zuul:
-  
+  host:
+    connect-timeout-millis: 3000000
+    socket-timeout-millis: 3000000
+    max-per-route-connections: 1000
+    max-total-connections: 300
+    time-to-live: 100
   routes:
     emart-identity-service:
       path: /identity/**
       sensitiveHeaders: Cookie,Set-Cookie
       serviceId: emart-identity-service
+    emart-inventory-service:
+      path: /inventory/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      serviceId: emart-inventory-service
+    eamrt-cart:
+      path: /cart/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      serviceId: eamrt-cart
+    emart-order-service:
+      path: /order/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      serviceId: emart-order-service
+    emart-financial-service:
+      path: /financial/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      serviceId: emart-financial-service
+

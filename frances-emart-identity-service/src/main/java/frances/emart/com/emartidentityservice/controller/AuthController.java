@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frances.emart.com.emartidentityservice.utlis.JwtUtil;
 import frances.emart.com.emartidentityservice.viewmodel.EmartUserDetails;
+import frances.emart.com.emartidentityservice.viewmodel.JwtResponse;
 import frances.emart.com.emartidentityservice.viewmodel.LoginRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +24,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-
 @RestController
 public class AuthController {
-    
+
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -37,29 +37,26 @@ public class AuthController {
     @Qualifier("EmartUserDetailService")
     private UserDetailsService userDetailService;
 
-
     @RequestMapping(path = "/auth/tokens", method = RequestMethod.GET)
     public ResponseEntity<?> getUserByToken(@RequestParam String token) {
-        if(token==null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        
-        String username =  jwtUtil.getUsernameFromJWT(token);
-        if(username == null ) return new ResponseEntity<>("Invalidate Token",HttpStatus.UNAUTHORIZED);
-        return new ResponseEntity<>(
-            (EmartUserDetails)this.userDetailService.loadUserByUsername(username),HttpStatus.OK);
+        if (token == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        String username = jwtUtil.getUsernameFromJWT(token);
+        if (username == null)
+            return new ResponseEntity<>("Invalidate Token", HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>((EmartUserDetails) this.userDetailService.loadUserByUsername(username),
+                HttpStatus.OK);
     }
 
-    @RequestMapping(path="/auth/login", method = RequestMethod.POST)
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest){
-        Authentication authentication = authenticationManager
-        .authenticate(
-            new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsernameOrEmail(), 
-                loginRequest.getPassword()));
-                SecurityContextHolder.getContext()
-                .setAuthentication(authentication);
+    @RequestMapping(path = "/auth/login", method = RequestMethod.POST)
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmail(), loginRequest.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtUtil.createJWT(authentication);
-        return new ResponseEntity<>(jwt,HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(jwt), HttpStatus.OK);
     }
 
     @RequestMapping(path="/auth/logout", method = RequestMethod.POST)

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,17 +9,24 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ItemComponent implements OnInit {
 
-  constructor(config: NgbCarouselConfig) { 
-    config.interval = 10000;
+  constructor(config: NgbCarouselConfig) {
+    config.interval = 5000;
     config.wrap = false;
     config.keyboard = false;
     config.pauseOnHover = false;
   }
 
-  images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  @Input() item: any;
+
+  images = Array();
+
 
   ngOnInit(): void {
-
+    this.images.push(this.item.detailImage1);
+    this.images.push(this.item.detailImage2);
+    this.images.push(this.item.detailImage3);
+    this.images.push(this.item.detailImage4);
+    this.images.push(this.item.detailImage5);
   }
 
 }

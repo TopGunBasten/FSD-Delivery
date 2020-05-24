@@ -11,17 +11,22 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import frances.emart.com.emartinventoryservice.viewmodel.ItemRequest;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "item")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
 
 
     public Item(ItemRequest request){
         this.catagoryId = request.getCatagoryId();
         this.subCatagoryId = request.getSubcatagoryId();
+        this.thumbnail = request.getThumbnail();
         this.description = request.getDescription();
         this.detailImage1 = request.getDetailImage1();
         this.detailImage2 = request.getDetailImage2();
@@ -33,6 +38,7 @@ public class Item {
         this.sellerId = request.getSellerId();
         this.stockNumber = request.getStockNumber();
         this.manufacturer =  request.getManufacturer();
+        this.name = request.getName();
     }
 
     @Id
@@ -45,10 +51,12 @@ public class Item {
     private String catagoryId;
     @Column(name = "sub_catagory_id", length=64, nullable = false)
     private String subCatagoryId;
+    @Column(name = "name" , nullable = false)
+    private String name;
     @Column(name = "price" , nullable = false)
     private BigDecimal price;
-    @Column(name = "stock_number" , nullable = false)
-    private Number stockNumber;
+    @Column(name = "stock_number", nullable = false, columnDefinition="INT")
+    private int stockNumber;
     @Column(name = "remark", length=5000, nullable = false)
     private String remark;
     @Column(name = "description", length=2000, nullable = false)

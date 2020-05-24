@@ -16,6 +16,10 @@ public class EmartCart implements Serializable {
         this.items = new Hashtable<>();
     }
 
+    public void clearCart() {
+        this.items.clear();
+    }
+
     public void addItemToCart(CartItem item) {
         this.items.put(item.getId(), item);
     }

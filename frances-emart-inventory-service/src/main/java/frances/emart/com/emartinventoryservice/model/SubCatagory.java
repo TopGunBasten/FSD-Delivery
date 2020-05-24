@@ -3,6 +3,7 @@ package frances.emart.com.emartinventoryservice.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,14 +26,19 @@ public class SubCatagory {
         this.brief = request.getBrief();
         this.catagory = new Catagory();
         this.catagory.setId(request.getCatagoryId());
-        this.gts = this.getGts();
-        this.name = this.getName();
+        this.gts = request.getGts();
+        this.name = request.getName();
+    }
+
+    public SubCatagory(){
+        
     }
     
 
     @Id
     @Column(nullable = false, length = 64)
     @GenericGenerator(name = "sub-catagory-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "catagory-uuid")
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = Catagory.class)

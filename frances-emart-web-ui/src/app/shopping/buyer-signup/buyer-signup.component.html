@@ -4,20 +4,30 @@
             <h3 class="text-center">Become an buyer</h3>
         </div>
     </div>
-    <form (ngSubmit)="registerBuyer()">
+    <form [formGroup]="signUpForm" (ngSubmit)="registerBuyer()">
     <div class="row mt-4">
         <div class="col-sm-3"></div>
         <div class="col-sm-6 form-group">
             <label for="username">Username:</label>
-            <input id="username" class="form-control"  type="text">
+            <input formControlName="username" id="username" class="form-control"  type="text">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="username.errors.required">
+                    Username is required.
+                </div>
+            </div> 
         </div>
         <div class="col-sm-3"></div>
     </div>
     <div class="row mt-4">
         <div class="col-sm-3"></div>
         <div class="col-sm-6 form-group">
-            <label for="password">Password:</label>
-            <input id="password" class="form-control"  type="password">
+            <label  for="password">Password:</label>
+            <input formControlName="password" id="password" class="form-control"  type="password">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="password.errors.required">
+                    Password is required.
+                </div>
+            </div> 
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -25,7 +35,13 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6 form-group">
             <label for="confirmPassword" class="mr-2">Confirm Password:</label>
-            <input id="confirmPassword" class="form-control"  type="password">
+            <input  formControlName="confirmPassword" id="confirmPassword" id="confirmPassword" class="form-control"  type="password">
+            <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="confirmPassword.errors.required">
+                    Confirm Password is required.
+                </div>
+                <div *ngIf="confirmPassword.errors.confirmedValidator">Passwords must match</div>
+            </div> 
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -33,7 +49,15 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6 form-group">
             <label for="email" class="mr-2">Email:</label>
-            <input id="email" type="email" class="form-control" >
+            <input id="email" formControlName="email" type="email" class="form-control" >
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="email.errors.required">
+                    Email is required.
+                </div>
+                <div *ngIf="email.errors.email">
+                    Email is incorrect.
+                </div>
+            </div> 
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -41,7 +65,12 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6 form-group">
             <label class="mr-2">Phone:</label>
-            <input id="phone" type="tel" class="form-control">
+            <input formControlName="phone"  id="phone" type="tel" class="form-control">
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="mt-1 alert alert-danger">
+                <div *ngIf="phone.errors.required">
+                    Phone is required.
+                </div>
+            </div>
         </div>
         <div class="col-sm-3"></div>
     </div>
@@ -51,6 +80,11 @@
         <div class="col-sm-6 text-center">
                 <button class="btn btn-primary" type="submit">Register</button>
                 <button class="ml-5 btn btn-outline-primary" type="reset">Reset</button>
+        </div>
+    </div>
+    <div *ngIf="errorMessage" class="mt-1 alert alert-danger">
+        <div>
+            {{errorMessage}}
         </div>
     </div>
   </form>
