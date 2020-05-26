@@ -1,6 +1,6 @@
 spring:
   application:
-    name: emart-mock_payment-service
+    name: emart-mock-payment-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${EMART_MOCK_PAYMENT_DB_HOST:127.0.0.1}:${EMART_MOCK_PAYMENT_DB_PORT:3306}/${EMART_MOCK_PAYMENT_DB:emart_mock_payment_db}

@@ -15,14 +15,59 @@ import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "emart_transcation")
 @AllArgsConstructor
-@NoArgsConstructor
 public class EmartTranscation {
+
+    public EmartTranscation () {
+        this.createdDate =LocalDateTime.now();
+    }
+
+    public static EmartTranscation createBuyerTranscation(
+        String orderId,String buyerId,
+        String sellerId, String remarks, BigDecimal total) {
+        EmartTranscation trans = new EmartTranscation();
+        trans.setOrderId(orderId);
+        trans.setBuyerId(buyerId);
+        trans.setRemarks(remarks);
+        trans.setSellerId(sellerId);
+        trans.setRemarks(remarks);
+        trans.setTotal(total.negate());
+        trans.setType(EmartTranscationType.PAID);
+        return trans;
+    }
+
+    public static EmartTranscation createSellerTranscation(
+        String orderId, String buyerId,
+        String sellerId, String remarks, BigDecimal total) {
+        EmartTranscation trans = new EmartTranscation();
+        trans.setOrderId(orderId);
+        trans.setBuyerId(buyerId);
+        trans.setRemarks(remarks);
+        trans.setSellerId(sellerId);
+        trans.setRemarks(remarks);
+        trans.setTotal(total);
+        trans.setType(EmartTranscationType.DEPOSIT);
+        return trans;
+
+    }
+
+    public static EmartTranscation createDiscountTranscation( 
+        String orderId, String buyerId,
+        String sellerId, String remarks, BigDecimal total) {
+        EmartTranscation trans = new EmartTranscation();
+        trans.setOrderId(orderId);
+        trans.setBuyerId(buyerId);
+        trans.setRemarks(remarks);
+        trans.setSellerId(sellerId);
+        trans.setRemarks(remarks);
+        trans.setTotal(total.negate());
+        trans.setType(EmartTranscationType.DISCOUNT);
+        return trans;
+    }
 
     @Id
     @Column(nullable = false, length = 64)
