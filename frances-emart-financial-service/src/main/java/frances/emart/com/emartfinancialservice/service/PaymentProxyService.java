@@ -13,6 +13,6 @@ import frances.emart.com.emartfinancialservice.viewmodel.PaymentRequest;
 @RequestMapping(path = "api/v1")
 @Service
 public interface PaymentProxyService {
-    @RequestMapping(name = "/payments", method = RequestMethod.POST)
+    @RequestMapping(path = "/payments", method = RequestMethod.POST)
     public MockPayment submitTransaction(@RequestBody PaymentRequest request);
 }

@@ -1,14 +1,9 @@
 package frances.emart.com.emartorderservice.config;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
-import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +13,11 @@ import lombok.Data;
 @Configuration
 @Data
 public class RabbitMQConfig {
-    @Value("${emart.rabbitmq.queue}")
-	String queueName;
+    @Value("${emart.rabbitmq.queuef}")
+	String queueNamef;
+
+	@Value("${emart.rabbitmq.queuei}")
+	String queueNamei;
 
 	@Value("${emart.rabbitmq.exchange}")
 	String exchange;
@@ -28,8 +26,14 @@ public class RabbitMQConfig {
 	private String routingkey;
 
 	@Bean
-	Queue queue() {
-		return new Queue(queueName, false);
+	Queue queuef() {
+		return new Queue(queueNamef, false);
+	}
+
+
+	@Bean
+	Queue queuei() {
+		return new Queue(queueNamei, false);
 	}
 
 	@Bean
@@ -38,8 +42,13 @@ public class RabbitMQConfig {
 	}
 
 	@Bean
-	Binding binding(Queue queue, DirectExchange exchange) {
-		return BindingBuilder.bind(queue).to(exchange).with(routingkey);
+	Binding bindingi(Queue queuei, DirectExchange exchange) {
+		return BindingBuilder.bind(queuei).to(exchange).with(routingkey);
+	}
+
+	@Bean
+	Binding bindingf(Queue queuef, DirectExchange exchange) {
+		return BindingBuilder.bind(queuef).to(exchange).with(routingkey);
 	}
 
 	

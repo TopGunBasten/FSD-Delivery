@@ -43,6 +43,6 @@ eureka:
 
 emart:
   rabbitmq:
-    queue: emart-queue
+    queue: emart-queue-i
     exchange: emart-order
-    routingkey: emart.order.#
+    routingkey: emart.order

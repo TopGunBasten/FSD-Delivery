@@ -1,5 +1,6 @@
 package frances.emart.com.emartmockpayment.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,14 +14,15 @@ import frances.emart.com.emartmockpayment.viewmodel.PaymentRequest;
 @RestController
 public class MockPaymentController {
 
+    @Autowired
     private MockPaymentService mockPaymentService;
 
-    @RequestMapping(name = "/payments", method = RequestMethod.POST)
+    @RequestMapping(path = "/payments", method = RequestMethod.POST)
     public MockPayment createPayment(@RequestBody PaymentRequest payment) {
         return this.mockPaymentService.acceptPayment(payment);
     }
 
-    @RequestMapping(name = "/payments", method = RequestMethod.GET)
+    @RequestMapping(path = "/payments", method = RequestMethod.GET)
     public MockPayment getPayment(@RequestParam("clientId") String clientId, @RequestParam("orderId") String orderId) {
         return this.mockPaymentService.getMockPayment(clientId, orderId);
     }

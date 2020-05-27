@@ -36,8 +36,8 @@ public class EmartTranscationService {
     @Autowired
     private PurchaseHistoryRepository purchaseHistoryRepository;
 
-    public List<EmartTranscation> getSellerReport(LocalDateTime startDate, LocalDateTime endDate, String buyerId) {
-        return this.emartTranscationRepository.getBuyerReport(startDate, endDate,buyerId);
+    public List<EmartTranscation> getSellerReport(LocalDateTime startDate, LocalDateTime endDate, String sellerId) {
+        return this.emartTranscationRepository.getSellerReport(startDate, endDate,sellerId);
     }
 
     public void UpdateExternalTransId(String orderId, String transcationId) {
@@ -55,11 +55,11 @@ public class EmartTranscationService {
         BigDecimal taxTotal=BigDecimal.ZERO;
         BigDecimal discountTotal = BigDecimal.ZERO;
         BigDecimal percent;
-        BigDecimal taxRate = new BigDecimal(order.getTaxRate()/100);
+        BigDecimal taxRate = new BigDecimal(order.getTaxRate()).divide(new BigDecimal(100));
         String discountRemarkFormat="code %s with percent %";
         String discountRemark= null;
         if(!order.getDiscountCode().isEmpty()){
-            percent = new BigDecimal((100-order.getDiscountPercentage())/100);
+            percent = new BigDecimal((100-order.getDiscountPercentage())).divide(new BigDecimal(100));
             discountRemark = String.format(discountRemarkFormat, order.getDiscountCode(), order.getDiscountPercentage());
         }
         else{
@@ -78,7 +78,7 @@ public class EmartTranscationService {
             String lineRemarks = String.format(remarkFormat, 
             orderLine.getItemName(), 
             orderLine.getQuantity(), lineAllTotal.toPlainString(),lineTax.toPlainString());
-            Item item = itemProxyService.getItem(order.getId());
+            Item item = itemProxyService.getItem(orderLine.getItemId());
             EmartTranscation buyerEmartTranscation = EmartTranscation.createBuyerTranscation(order.getId(), order.getBuyerId(), item.getSellerId(), lineRemarks, lineAllTotal);
             
             PurchaseHistory history = new PurchaseHistory();

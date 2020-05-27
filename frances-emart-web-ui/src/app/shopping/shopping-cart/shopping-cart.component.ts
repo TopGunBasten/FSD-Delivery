@@ -119,8 +119,10 @@ export class ShoppingCartComponent implements OnInit {
     this.apiService.placeOrder(orderRequest).subscribe(
       data => {
         this.toastr.success(`order # ${data.id}`, 'submit successful');
-        this.apiService.cleanCart( this.cacheService.getItem<EmartUser>('emart-user').id);
-        this.router.navigate(['shopping/search']);
+        this.apiService.cleanCart(this.cacheService.getItem<EmartUser>('emart-user').id).subscribe(
+          data => {
+          this.router.navigate(['shopping/search']);
+          });
       }
     );
 

@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +49,12 @@ public class OrderService {
         final List<OrderLine> lines = this.orderLineRepository.saveAll(order.getLines());
         order.setLines(lines);
         final ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+
         String orderJson;
         try {
-            orderJson = objectMapper.writeValueAsString(order);
+            orderJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(order);
             this.rabbitTemplate.convertAndSend(mqConfig.getExchange(), mqConfig.getRoutingkey(), orderJson);
             log.info("order id:"+order.getId()+"send to MQ");
         } catch (JsonProcessingException e) {

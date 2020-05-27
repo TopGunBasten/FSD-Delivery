@@ -33,8 +33,8 @@ export class SellingReportComponent implements OnInit {
     if (this.reportForm.invalid) { return; }
 
     const filter = {
-      startDate: this.startDate.value,
-      endDate: this.endDate.value,
+      startDate: `${this.startDate.value} 00:00:00`,
+      endDate: `${this.endDate.value} 00:00:00`,
       buyerId: this.cacheService.getItem<EmartUser>('emart-user').id
     };
     this.apiService.getSellerReport(filter).subscribe(

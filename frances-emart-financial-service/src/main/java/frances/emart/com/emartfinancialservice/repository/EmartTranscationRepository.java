@@ -12,8 +12,8 @@ import frances.emart.com.emartfinancialservice.model.EmartTranscation;
 @Repository
 public interface EmartTranscationRepository extends JpaRepository<EmartTranscation, String>{
    
-   @Query("select t from EmartTranscation t where buyerId= :buyerId and type = 'deposit' and createdDate between :startDate  and :endDate")
-   List<EmartTranscation> getBuyerReport(LocalDateTime startDate, LocalDateTime endDate, String buyerId);
+   @Query("select t from EmartTranscation t where sellerId= :sellerId and type = 'DEPOSIT' and createdDate between :startDate  and :endDate")
+   List<EmartTranscation> getSellerReport(LocalDateTime startDate, LocalDateTime endDate, String sellerId);
 
    List<EmartTranscation> findByOrderId(String orderId);
 }

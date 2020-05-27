@@ -3,9 +3,9 @@ spring:
     name: emart-inventory-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${EMART_INVENTORY_SERVICE_DB_HOST}:${EMART_INVENTORY_SERVICE_DB_PORT}/${EMART_INVENTORY_SERVICE_DB}
-    username: ${EMART_INVENTORY_SERVICE_USER}
-    password: ${EMART_INVENTORY_SERVICE_PASSWORD}
+    url: jdbc:mysql://${EMART_INVENTORY_SERVICE_DB_HOST:127.0.0.1}:${EMART_INVENTORY_SERVICE_DB_PORT:3306}/${EMART_INVENTORY_SERVICE_DB:emart_inventory_service_db}
+    username: ${EMART_INVENTORY_SERVICE_USER:emart_inventory_service_db}
+    password: ${EMART_INVENTORY_SERVICE_PASSWORD:Test123}
   jpa:
     show-sql: true
     database: MYSQL
@@ -14,6 +14,11 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+  rabbitmq:
+    host: ${QUEUE_HOST:localhost}
+    port: ${QUEUE_PORT:5672}
+    username: ${QUEUE_USER:guest}
+    password: ${QUEUE_PASSWORD:guest}
 
 server:
   port: 9012
@@ -35,3 +40,9 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:9999/eureka/}
+
+emart:
+  rabbitmq:
+    queue: emart-queue-i
+    exchange: emart-order
+    routingkey: emart.order

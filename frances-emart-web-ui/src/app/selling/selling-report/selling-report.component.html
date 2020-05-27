@@ -37,7 +37,7 @@
     <tbody *ngFor="let tran of trans">
       <tr>
         <th scope="row">{{tran.id | slice:24}}</th>
-        <td>{{tran.orderId | slice:24}}}</td>
+        <td>{{tran.orderId | slice:24}}</td>
         <td>{{tran.remarks}}</td>
         <td>
           {{tran.total | currency:'CNY'}}
