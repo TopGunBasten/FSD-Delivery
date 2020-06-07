@@ -13,6 +13,7 @@ import { SellingHomeComponent } from './selling/selling-home/selling-home.compon
 import { ItemManagementComponent } from './selling/item-management/item-management.component';
 import { SellingReportComponent } from './selling/selling-report/selling-report.component';
 import { ErrorComponent } from './emart-common/error/error.component';
+import { EmartGuard } from './emart-common/emart.guard';
 
 
 const routes: Routes = [
@@ -24,16 +25,22 @@ const routes: Routes = [
   {path: '',   redirectTo: '/login', pathMatch: 'full' },
   {path: 'shopping', component: ShoppingHomeComponent,
      children: [
-      {path: 'search', component: SearchItemsComponent},
-      {path: 'cart', component: ShoppingCartComponent},
-      {path: 'history', component: PurchaseHistoryComponent},
-      {path: 'discounts', component: DiscountsComponent}
+      {path: 'search', component: SearchItemsComponent,
+      canActivate: [EmartGuard], data: {roles: ['BUYER']}},
+      {path: 'cart', component: ShoppingCartComponent,
+      canActivate: [EmartGuard], data: {roles: ['BUYER']}},
+      {path: 'history', component: PurchaseHistoryComponent,
+      canActivate: [EmartGuard], data: {roles: ['BUYER']}},
+      {path: 'discounts', component: DiscountsComponent,
+      canActivate: [EmartGuard], data: {roles: ['BUYER']}}
      ]
   },
   {path: 'selling', component: SellingHomeComponent,
      children: [
-      {path: 'items', component: ItemManagementComponent},
-      {path: 'report', component: SellingReportComponent}
+      {path: 'items', component: ItemManagementComponent,
+      canActivate: [EmartGuard], data: {roles: ['SELLER']}},
+      {path: 'report', component: SellingReportComponent,
+      canActivate: [EmartGuard], data: {roles: ['SELLER']}}
      ]
   }
 ];

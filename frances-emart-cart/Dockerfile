@@ -2,7 +2,7 @@ FROM openjdk:8-jdk-alpine
 
 WORKDIR /app
 
-COPY ./target/emart-cart-service-0.0.1-SNAPSHOT.jar ./
+COPY ./target/emart-cart-0.0.1-SNAPSHOT.jar ./
 
 EXPOSE 9013
 

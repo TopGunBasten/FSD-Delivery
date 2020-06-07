@@ -8,11 +8,6 @@ pipeline {
             sh "ng build --prod"
          }
       }
-      stage('Test'){
-         steps {
-             sh 'ng test --watch=false'
-        }
-      }
       stage('Image Build'){
         steps {
           sh 'docker build . -t topgunbasten/emart-ui'

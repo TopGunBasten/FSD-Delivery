@@ -1,7 +1,7 @@
 if [ ! "$(docker ps -q -f name=emart-ui)" ]; then
     if [ "$(docker ps -aq -f status=exited -f name=emart-ui)" ]; then
         # cleanup
-        docker stop 
+        docker stop emart-ui
         docker rm emart-ui
     fi
     # run your container

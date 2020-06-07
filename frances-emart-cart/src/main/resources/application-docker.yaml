@@ -4,10 +4,10 @@ spring:
   application:
     name: eamrt-cart
   redis:
-    host: 127.0.0.1
-    port: 6379
+    host: ${EMART_REDIS_HOST:127.0.0.1}
+    port: ${EMART_REDIS_PORT:6379}
     database: 1
-    password: Test123
+    password: ${EMART_REDIS_PASSWORD:Test123}
 
 server:
   port: 9013

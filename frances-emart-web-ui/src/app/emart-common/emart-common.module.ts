@@ -5,9 +5,6 @@ import {LogoutComponent} from './logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ErrorComponent } from './error/error.component';
-import { EmartAuthService } from './auth/emart-auth.service';
-import { EmartCacheService } from './auth/emart-cache.service';
-import { EmartUser } from './models/emart-user';
 
 
 
@@ -15,7 +12,7 @@ import { EmartUser } from './models/emart-user';
   declarations:
   [ LoginComponent,
     LogoutComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     CommonModule,

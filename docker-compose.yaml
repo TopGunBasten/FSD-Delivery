@@ -1,0 +1,126 @@
+version: "3"
+services:
+  emart-redis:
+    image: redis
+    networks:
+    - emart
+    command: redis-server --requirepass Test123
+  emart-mq:
+    image: rabbitmq
+    networks:
+    - emart
+  emart-mysql:
+    image: mysql:5.7
+    networks:
+    - emart
+    environment:
+      MYSQL_ROOT_PASSWORD: 'emart'
+      MYSQL_USER: 'eamrt'
+      MYSQL_PASS: 'Test123'
+    volumes: 
+      - dev-mysql:/var/lib/mysql
+      - $PWD/middleware-seteup/init.sql:/docker-entrypoint-initdb.d/rpa-init.sql
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+  emart-discovery-service:
+    image: "emart-discovery-service:1.0.0"
+    networks:
+    - emart
+  emart-identity-service:
+    image: "emart-identity-service:1.0"
+    networks:
+    - emart
+    environment: 
+    - EMART_IDENTITY_SERVICE_DB_HOST=emart-mysql
+    - EMART_IDENTITY_SERVICE_DB_PORT=3306
+    - EMART_IDENTITY_SERVICE_DB=emart_identity_service_db
+    - EMART_IDENTITY_SERVICE_DB_PASSWORD=Test123
+    - EMART_REDIS_HOST=dev-redis
+    - EMART_REDIS_PORT=6379
+    - EMART_REDIS_PASSWORD=Test123
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-api-gateway:
+    image: "emart-api-gateway:1.0"
+    networks:
+    - emart
+    ports: 
+      - "9010:9010"
+    environment: 
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-cart:
+    image: "eamrt-cart:1.0"
+    networks:
+    - emart
+    environment:
+    - EMART_REDIS_HOST=emart-redis
+    - EMART_REDIS_PORT=6379
+    - EMART_REDIS_PASSWORD=Test123
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-finnacial-service:
+    image: "emart-finnacial-service:1.0"
+    networks: 
+    - emart
+    environment:
+    - EMART_FINANCIAL_SERVICE_DB_HOST=emart-mysql
+    - EMART_FINANCIAL_SERVICE_DB_PORT=3306
+    - EMART_FINANCIAL_SERVICE_DB=emart_financial_service_db
+    - EMART_FINANCIAL_SERVICE_USER=emart_financial_service_db
+    - EMART_FINANCIAL_SERVICE_PASSWORD=Test123
+    - QUEUE_HOST=emart-mq
+    - QUEUE_PORT=5672
+    - QUEUE_USER=guest
+    - QUEUE_PASSWORD=guest
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-inventory-service:
+    image: "emart-inventory-service:1.0"
+    networks: 
+    - emart
+    environment:
+    - EMART_INVENTORY_SERVICE_DB_HOST=emart-mysql
+    - EMART_INVENTORY_SERVICE_DB_PORT=3306
+    - EMART_INVENTORY_SERVICE_DB=emart_inventory_service_db
+    - EMART_INVENTORY_SERVICE_USER=emart_inventory_service_db
+    - EMART_INVENTORY_SERVICE_PASSWORD=Test123
+    - QUEUE_HOST=emart-mq
+    - QUEUE_PORT=5672
+    - QUEUE_USER=guest
+    - QUEUE_PASSWORD=guest
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-mock-payment:
+    image: "emart-mock-payment:1.0"
+    networks:  
+    - emart
+    environment:
+    - EMART_MOCK_PAYMENT_DB_HOST=emart-mysql
+    - EMART_MOCK_PAYMENT_DB_PORT=3306
+    - EMART_MOCK_PAYMENT_DB=emart_mock_payment_db
+    - EMART_MOCK_PAYMENT_DB_USER=emart_mock_payment_db
+    - EMART_MOCK_PAYMENT_PASSWORD=Test123
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-order-service:
+    image: "emart-order-service:1.0"
+    networks: 
+    - emart
+    environment:
+    - EMART_ORDER_SERVICE_DB_HOST=emart-mysql
+    - EMART_ORDER_SERVICE_DB_PORT=3306
+    - EMART_ORDER_SERVICE_DB=emart_mock_payment_db
+    - EMART_ORDER_SERVICE_USER=emart_mock_payment_db
+    - EMART_ORDER_SERVICE_PASSWORD=Test123
+    - QUEUE_HOST=emart-mq
+    - QUEUE_PORT=5672
+    - QUEUE_USER=guest
+    - QUEUE_PASSWORD=guest
+    - EUREKA_URI=http://emart-discovery-service:9999/eureka
+  emart-web-ui:
+    image: "emart-web-ui:1.0"
+    networks: 
+    - emart
+    ports:
+    - "80:3000"
+
+
+volumes: 
+  emart-mysql:
+
+networks: 
+  emart:

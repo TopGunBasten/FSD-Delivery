@@ -1,6 +1,7 @@
 package frances.emart.com.emartfinancialservice.service;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -55,11 +56,11 @@ public class EmartTranscationService {
         BigDecimal taxTotal=BigDecimal.ZERO;
         BigDecimal discountTotal = BigDecimal.ZERO;
         BigDecimal percent;
-        BigDecimal taxRate = new BigDecimal(order.getTaxRate()).divide(new BigDecimal(100));
+        BigDecimal taxRate = new BigDecimal(order.getTaxRate(), MathContext.DECIMAL32).divide(new BigDecimal(100, MathContext.DECIMAL32));
         String discountRemarkFormat="code %s with percent %";
         String discountRemark= null;
         if(!order.getDiscountCode().isEmpty()){
-            percent = new BigDecimal((100-order.getDiscountPercentage())).divide(new BigDecimal(100));
+            percent = new BigDecimal((100-order.getDiscountPercentage()), MathContext.DECIMAL32).divide(new BigDecimal(100), MathContext.DECIMAL32);
             discountRemark = String.format(discountRemarkFormat, order.getDiscountCode(), order.getDiscountPercentage());
         }
         else{
